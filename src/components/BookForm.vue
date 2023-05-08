@@ -1,8 +1,6 @@
 <template>
     <div class="book-form">
 
-        <h2>Add a new book</h2>
-
         <form class="book-form__form">
 
             <div class="book-form__form-group">

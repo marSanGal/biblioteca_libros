@@ -1,42 +1,40 @@
 <template>
-  <div class="app">
-
-    <header class="header">
-      <img class="logo" src="./assets/uoc-logo.png" alt="Logo">
+  <header class="header">
+    <div class="header__left">
+      <img class="logo" src="./assets/uoc-logo.png" alt="UOC logo" />
       <h1 class="title">Book Manager</h1>
-    </header>
-
-    <div class="content">
-      <SearchBar />
-      <FilterBar />
-
-      <main class="main">
-        <BookList :books="books" />
-      </main>
-
-      <ModalLayer v-if="showModal" name="Add new book">
-        <BookForm />
-      </ModalLayer>
     </div>
-
-  </div>
+  </header>
+  <SearchBar />
+  <FilterBar />
+  <main class="main">
+    <BookList :books="books" />
+  </main>
+  <ModalLayer v-if="showModal">
+    <template v-slot:header>
+      <h2>Add a new book</h2>
+    </template>
+    <template v-slot:body>
+      <BookForm />
+    </template>
+  </ModalLayer>
 </template>
 
 <script>
-import SearchBar from './components/SearchBar.vue';
-import FilterBar from './components/FilterBar.vue';
-import BookList from './components/BookList.vue';
-import ModalLayer from './components/ModalLayer.vue';
-import BookForm from './components/BookForm.vue';
+import SearchBar from "./components/SearchBar.vue";
+import BookList from "./components/BookList.vue";
+import FilterBar from "./components/FilterBar.vue";
+import BookForm from "./components/BookForm.vue";
+import ModalLayer from "./components/ModalLayer.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     SearchBar,
-    FilterBar,
     BookList,
-    ModalLayer,
+    FilterBar,
     BookForm,
+    ModalLayer,
   },
   data() {
     return {
@@ -121,35 +119,33 @@ export default {
 </script>
 
 <style>
-
 body {
-padding: 0;
-margin: 0;
-font-family: "Avenir", Helvetica, Arial, sans-serif;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-text-align: center;
-color: #2c3e50;
+  padding: 0;
+  margin: 0;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 .header {
-display: flex;
-align-items: center;
-padding: 0 20px;
-background-color: #f5f5f5;
-border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
 }
 .header__left {
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 }
 .logo {
-height: 40px;
-margin-right: 10px;
+  height: 40px;
+  margin-right: 10px;
 }
 .title {
-font-size: 24px;
-font-weight: 400;
+  font-size: 24px;
+  font-weight: 400;
 }
-
 </style>
-
