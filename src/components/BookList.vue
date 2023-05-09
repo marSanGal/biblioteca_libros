@@ -2,7 +2,7 @@ import BookItem from './BookItem.vue';
 
 <template>
   <div class="book-list">
-    <BookItem v-for="book in books" :book="book" />
+    <BookItem v-for="book in books" :book="book" @delete-book="onDeleteBook" />
   </div>
 </template>
 
@@ -19,6 +19,12 @@ export default {
       required: true,
     },
   },
+  methods: {
+    onDeleteBook(id) {
+      // Emitir el evento "delete-book" con el identificador del libro a eliminar
+      this.$emit('delete-book', id);
+    }
+  }
 };
 </script>
 

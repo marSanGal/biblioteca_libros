@@ -1,7 +1,7 @@
 <template>
   <div class="book-item" :class="book.favorite && 'book-item--favourite'">
     <button class="book-item__delete">
-      <img src="../assets/delete-button.svg" alt="Delete book" />
+      <img src="../assets/delete-button.svg" alt="Delete book" @click="deleteBook(book.id)" />
     </button>
     <div class="book-item__cover">
       <img :src="book.cover" alt="Book cover" />
@@ -45,6 +45,11 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  methods: {
+    deleteBook(id) {
+      this.$emit('delete-book', id);
+    }
   },
 };
 </script>

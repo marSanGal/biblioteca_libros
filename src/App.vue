@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      showModal: false,
+      showModal: true,
       books: [
         {
           id: 1,
@@ -149,3 +149,5 @@ body {
   font-weight: 400;
 }
 </style>
+
+

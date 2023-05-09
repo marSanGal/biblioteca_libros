@@ -3,6 +3,11 @@
 
         <form class="book-form__form">
 
+            <div class="book-form__error" v-if="errorMessage">
+                Please fill in all the required fields
+            </div>
+
+
             <div class="book-form__form-group">
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title">
@@ -40,8 +45,15 @@
 
             <div class="book-form__form-group">
                 <label for="language">Language:</label>
-                <input type="number" id="language" name="language">
+                <select id="language" name="language">
+                    <option value="Spanish">Spanish</option>
+                    <option value="English">English</option>
+                    <option value="French">French</option>
+                    <option value="Italian">Italian</option>
+                    <option value="German">German</option>
+                </select>
             </div>
+
 
             <div class="book-form__form-group">
                 <label for="isbn">ISBN:</label>
@@ -65,8 +77,15 @@
 
             <div class="book-form__form-group">
                 <label for="rating">Rating:</label>
-                <input type="number" id="rating" name="rating" min="0" max="5">
+                    <select id="rating" name="rating">
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                    </select>
             </div>
+
 
             <div class="book-form__form-group">
                 <label for="image">Image:</label>
@@ -82,6 +101,24 @@
 
 
 <script>
+import { uuid } from "vue-uuid";
+
+export default {
+    name: "book-form",
+    data() {
+        return {
+            showContent: false
+        }
+    },
+    methods: {
+        createBook() {
+            if (!this.title || !this.description || !this.author || !this.year) {
+                errorMessage = true;
+                return;
+            }
+        }
+    },
+};
 
 </script>
 
@@ -111,7 +148,8 @@ font-size: 14px;
 }
 
 .book-form__form-group input,
-.book-form__form-group textarea {
+.book-form__form-group textarea,
+.book-form__form-group select {
 width: 80%;
 padding: 10px;
 border: 1px solid #e5e5e5;
@@ -121,7 +159,8 @@ text-align: left;
 }
 
 .book-form__form-group input:focus,
-.book-form__form-group textarea:focus {
+.book-form__form-group textarea:focus,
+.book-form__form-group select:focus {
 border-color: #000;
 }
 
